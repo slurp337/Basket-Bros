@@ -115,39 +115,7 @@
 					from the page, it will be hidden automaticly.
 					If you do want to remove it use the AIP_REMOVE callback.
 					*/
-            Main.DoneVideoAd();
-            window.document.getElementById("openfl-content").focus();
-            if (state == null) state = "null";
-            console.log("Video Ad Complete: " + state);
-            SendEvent("event", "donevideo-" + lastUnitPlayed + "-" + state);
-          },
-          AIP_REMOVE: function () {
-            // Here it's safe to remove the PREROLL_ELEM from the page if you want. But it's not recommend.
-          },
-        });
-      });
-
-      function ShowVideo(theUnitName = null) {
-        console.log("SHOW_VIDEO");
-        var aUnitName = "";
-        if (typeof gCrazySDK !== "undefined") {
-          gCrazySDK.addEventListener("adFinished", Main.DoneVideoAd); // reenable sound, enable ui
-          gCrazySDK.addEventListener("adError", Main.DoneVideoAd); // reenable sound, enable ui
-          gCrazySDK.requestAd();
-          console.log("CG_AD_REQUESTED");
-          SendEvent("event", "cgvideo");
-          return;
-        }
-        if (typeof adplayer === "undefined") {
-          Main.DoneVideoAd(true);
-          SendEvent("event", "video_adblocked");
-          console.log("VIDEO_ADBLOCKED");
-        } else {
-          var aStr = "preroll";
-          if (theUnitName != null) aStr = theUnitName;
-          lastUnitPlayed = aStr;
-          SendEvent("event", "startvideo-" + aStr);
-
+         
           aiptag.cmd.player.push(function () {
             adplayer.startPreRoll(theUnitName);
           });
