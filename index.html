@@ -94,8 +94,7 @@
       aiptag.consented = false; // GDPR setting, please set this value to false if an EU user has declined or not yet accepted marketing cookies, for users outside the EU please use true and for users accepted the GDPR also use true
 
       aiptag.cmd.player.push(function () {
-        adplayer = new aipPlayer({
-          AIP_ADBREAK_COMPLETE: function () {
+      AIP_ADBREAK_COMPLETE: function () {
             console.log("Adbreak Completed");
             Main.DoneInterstitialAd(false);
           },
@@ -117,7 +116,6 @@
 					*/
          
           aiptag.cmd.player.push(function () {
-            adplayer.startPreRoll(theUnitName);
           });
         }
       }
@@ -392,20 +390,9 @@
           console.log("COPIED CG URL");
         }
       }
+}
 
-      function ShowAdBreak() {
-        //check if the adslib is loaded correctly or blocked by adblockers etc.
-        if (typeof gCrazySDK !== "undefined") {
-          Main.DoneInterstitialAd(false);
-          return;
-        }
-
-        if (typeof adplayer === "undefined") {
-          Main.DoneInterstitialAd(true);
-          return;
-        }
-        aiptag.cmd.player.push(function () {
-          adplayer.startAdBreak();
+  
         });
       }
 
